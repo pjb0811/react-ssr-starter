@@ -1,6 +1,6 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import * as post from '../actions/post';
-import API from '../api';
+import API from '../../lib/api';
 
 function* runRequestPost(action) {
   try {

@@ -1,5 +1,5 @@
 // import { createAction } from 'redux-actions';
-import { getPost } from '../api';
+import { getPost } from '../../lib/api';
 
 export const REQUEST_POST = 'REQUEST_POST';
 export const SUCCESS_POST = 'SUCCESS_POST';

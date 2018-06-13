@@ -5,8 +5,9 @@ import morgan from 'morgan';
 import path from 'path';
 import Loadable from 'react-loadable';
 import cookieParser from 'cookie-parser';
-
+import proxyMiddleware from 'http-proxy-middleware';
 import loader from './loader';
+import proxies from './proxies';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -17,6 +18,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(express.static(path.resolve(__dirname, '../build')));
+
+Object.keys(proxies).map(context => {
+  app.use(context, proxyMiddleware(proxies[context]));
+});
+
 app.use(express.Router().get('*', loader));
 app.use(loader);
 
