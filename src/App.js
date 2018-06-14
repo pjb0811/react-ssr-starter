@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
 import { Helmet } from 'react-helmet';
-import Routes from './components/pages';
+import Pages from './components/pages';
 
 class App extends Component {
   render() {
@@ -50,7 +50,7 @@ class App extends Component {
             href="//s.wemep.co.kr/ui/v1.0.28/dist/pc/css/pages/category.css"
           />
         </Helmet>
-        <Routes />
+        <Pages />
       </React.Fragment>
     );
   }
