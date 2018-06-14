@@ -1,5 +1,5 @@
 const rewireReactHotLoader = require('react-app-rewire-hot-loader');
-const devProxies = require('./src/lib/devProxies');
+const proxies = require('./src/lib/proxies');
 
 module.exports = {
   webpack: function(config, env) {
@@ -9,7 +9,7 @@ module.exports = {
   devServer: function(configFunction) {
     return function(proxy, allowedHost) {
       const config = configFunction(proxy, allowedHost);
-      config.proxy = devProxies;
+      config.proxy = proxies;
       return config;
     };
   }

@@ -1,4 +1,3 @@
-// Express requirements
 import path from 'path';
 import fs from 'fs';
 
@@ -13,7 +12,7 @@ import Loadable from 'react-loadable';
 import createStore from '../src/redux/store';
 import App from '../src/App';
 import manifest from '../build/asset-manifest.json';
-import rootSaga from '../src/redux/sagas';
+// import rootSaga from '../src/redux/sagas';
 
 export default (req, res) => {
   const injectHTML = (data, { html, title, meta, body, scripts, state }) => {
@@ -81,7 +80,6 @@ export default (req, res) => {
           res.send(html);
         }
       });
-
       // store.close();
     }
   );

@@ -7,7 +7,7 @@ import Loadable from 'react-loadable';
 import cookieParser from 'cookie-parser';
 import proxyMiddleware from 'http-proxy-middleware';
 import loader from './loader';
-import proxies from './proxies';
+import proxies from '../src/lib/proxies';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
