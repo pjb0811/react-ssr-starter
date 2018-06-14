@@ -17,3 +17,15 @@ export const Deal = Loadable({
   loading: () => null,
   modules: ['deal']
 });
+
+export const Promotion = Loadable({
+  loader: () => import('./Promotion'),
+  loading: () => null,
+  modules: ['promotion']
+});
+
+export const Test = Loadable({
+  loader: () => import('./Test'),
+  loading: () => null,
+  modules: ['test']
+});
