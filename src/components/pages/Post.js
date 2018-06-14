@@ -1,8 +1,9 @@
 import * as React from 'react';
+import Main from '../templates/Main';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { frontloadConnect } from 'react-frontload';
-
+import { Helmet } from 'react-helmet';
 import * as counterActions from '../../redux/actions/counter';
 import * as postActions from '../../redux/actions/post';
 
@@ -26,6 +27,9 @@ class Post extends React.Component {
 
     return (
       <div>
+        <Helmet>
+          <title>post</title>
+        </Helmet>
         <h1>{counter}</h1>
         <button onClick={CounterActions.incrementAsync}>+</button>
         <button onClick={CounterActions.decrementAsync}>-</button>
@@ -44,18 +48,20 @@ class Post extends React.Component {
   }
 }
 
-export default connect(
-  state => ({
-    counter: state.counter,
-    post: state.post.toJS()
-  }),
-  dispatch => ({
-    CounterActions: bindActionCreators(counterActions, dispatch),
-    PostActions: bindActionCreators(postActions, dispatch)
-  })
-)(
-  frontloadConnect(frontload, {
-    onMount: true,
-    onUpdate: false
-  })(Post)
+export default Main(
+  connect(
+    state => ({
+      counter: state.counter,
+      post: state.post.toJS()
+    }),
+    dispatch => ({
+      CounterActions: bindActionCreators(counterActions, dispatch),
+      PostActions: bindActionCreators(postActions, dispatch)
+    })
+  )(
+    frontloadConnect(frontload, {
+      onMount: true,
+      onUpdate: false
+    })(Post)
+  )
 );

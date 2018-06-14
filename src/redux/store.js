@@ -6,7 +6,6 @@ import rootReducer from './reducers';
 // import createSagaMiddleware, { END } from 'redux-saga';
 import { fromJS } from 'immutable';
 
-// A nice helper to tell us if we're on the server
 export const isServer = !(
   typeof window !== 'undefined' &&
   window.document &&
@@ -23,15 +22,12 @@ export default (url = '/') => {
   const middleware = [thunk, routerMiddleware(history)];
   const composedEnhancers = compose(applyMiddleware(...middleware));
 
-  // Do we have preloaded state available? Great, save it.
   const initialState = !isServer ? window.__PRELOADED_STATE__ : {};
 
-  // Delete it once we have it stored in a variable
   if (!isServer) {
     delete window.__PRELOADED_STATE__;
   }
 
-  // Create the store
   const store = createStore(
     connectRouter(history)(rootReducer),
     fromJS(initialState),
